@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  monerod:
+    image: lchaia/monerod:v0.15
+    container_name: monerod
+    build:
+      context: ./monerod
+    volumes:
+      - /etc/monero-blockchain/:/home/monero/.bitmonero
+    ports:
+      - 18080:18080
+      - 18089:18089
+    networks:
+      - monero
+    command:
+      - "--non-interactive"
+      - "--restricted-rpc"
+      - "--rpc-bind-ip=0.0.0.0"
+      - "--rpc-bind-port=18089"
+      - "--confirm-external-bind"
+      - "--max-concurrency=4"
+      - "--public-node"
+      - "--limit-rate-up 1024"
+      - "--limit-rate-down 2048"
+
+      # For ip2-zero
+      # - '--anonymous-inbound=<your-i2p-address>.b32.i2p,0.0.0.0:8061'
+      # - "--tx-proxy=i2p,172.16.238.10:8060"
+      # - '--add-peer=dsc7fyzzultm7y6pmx2avu6tze3usc7d27nkbzs5qwuujplxcmzq.b32.i2p'
+      # - '--log-level=1' # do not leave this on, may fill your disk
+
+    # user: root
+    # entrypoint: /bin/chown
+    # command:  monero:monero -R /home/monero/.bitmonero
