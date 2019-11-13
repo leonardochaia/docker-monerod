@@ -19,8 +19,8 @@ services:
       - "--confirm-external-bind"
       - "--max-concurrency=4"
       - "--public-node"
-      - "--limit-rate-up 1024"
-      - "--limit-rate-down 2048"
+      - "--limit-rate-up=1024"
+      - "--limit-rate-down=2048"
 
       # For ip2-zero
       # - '--anonymous-inbound=<your-i2p-address>.b32.i2p,0.0.0.0:8061'
