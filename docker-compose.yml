@@ -5,14 +5,12 @@ services:
     image: lchaia/monerod:v0.15
     container_name: monerod
     build:
-      context: ./monerod
+      context: ./src
     volumes:
       - /etc/monero-blockchain/:/home/monero/.bitmonero
     ports:
       - 18080:18080
       - 18089:18089
-    networks:
-      - monero
     command:
       - "--non-interactive"
       - "--restricted-rpc"
