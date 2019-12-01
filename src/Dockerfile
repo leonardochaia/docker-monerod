@@ -1,4 +1,4 @@
-ARG MONERO_BRANCH=v0.15.0.0
+ARG MONERO_BRANCH=v0.15.0.1
 
 FROM ubuntu:18.04 as build
 
