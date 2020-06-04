@@ -2,7 +2,7 @@ version: "3"
 
 services:
   monerod:
-    image: lchaia/monerod:v0.15.0.1
+    image: lchaia/monerod:v0.16.0.0
     container_name: monerod
     build:
       context: ./src
