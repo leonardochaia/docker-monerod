@@ -1,4 +1,4 @@
-ARG MONERO_BRANCH=v0.16.0.0
+ARG MONERO_BRANCH=v0.17.1.1
 
 FROM ubuntu:18.04 as build
 
@@ -7,7 +7,8 @@ RUN apt-get update && apt-get -y install build-essential cmake \
     pkg-config libboost-all-dev libssl-dev libzmq3-dev libunbound-dev \
     libsodium-dev libunwind8-dev liblzma-dev libreadline6-dev libldns-dev \
     libexpat1-dev doxygen graphviz libpgm-dev qttools5-dev-tools libhidapi-dev \
-    libusb-dev libprotobuf-dev protobuf-compiler libgtest-dev git
+    libusb-dev libprotobuf-dev protobuf-compiler libgtest-dev git \
+    libnorm-dev libpgm-dev libusb-1.0-0-dev libudev-dev
 
 WORKDIR /usr/src/gtest
 
@@ -19,10 +20,6 @@ ARG MONERO_BRANCH
 RUN git clone --recursive -b ${MONERO_BRANCH} \
     https://github.com/monero-project/monero . \
     && git submodule init && git submodule update
-
-RUN apt-get install -y libnorm-dev libpgm-dev
-RUN apt-get install -y libusb-1.0-0-dev
-RUN apt-get install -y libudev-dev
 
 RUN make -j8 release-static
 
