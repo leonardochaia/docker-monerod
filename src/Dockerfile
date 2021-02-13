@@ -1,7 +1,8 @@
 ARG MONERO_BRANCH=v0.17.1.9
+ARG UBUNTU_VERSION=20.04
 
-# Select Ubuntu 20.04LTS for the build image base
-FROM ubuntu:20.04 as build
+# Use Ubuntu for the build image base
+FROM ubuntu:${UBUNTU_VERSION} as build
 
 # Dependency list from https://github.com/monero-project/monero#compiling-monero-from-source
 # Added DEBIAN_FRONTEND=noninteractive to workaround tzdata prompt on installation
@@ -30,8 +31,8 @@ RUN git clone --recursive --branch ${MONERO_BRANCH} \
 # Make static Monero binaries
 RUN make -j8 release-static
 
-# Select Ubuntu 20.04LTS for the image base
-FROM ubuntu:20.04
+# Clean Ubuntu layer for the runtime image
+FROM ubuntu:${UBUNTU_VERSION}
 
 # Install remaining dependencies
 RUN apt-get update && apt-get install --no-install-recommends -y libnorm-dev libpgm-dev libgssapi-krb5-2 \
