@@ -36,10 +36,10 @@ version: "3"
 
 services:
   monerod:
-    image: lchaia/monerod:v0.16.0.0 # or latest and use watchtower
+    image: lchaia/monerod:v0.17.3.2 # or latest and use watchtower to keep up to date
     container_name: monerod
     volumes:
-      - /etc/monero-blockchain:/home/monero/.bitmonero
+      - /home/my-user/.bitmonero:/home/monero/.bitmonero
     ports:
       - 18080:18080
       - 18089:18089

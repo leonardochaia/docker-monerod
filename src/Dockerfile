@@ -1,4 +1,4 @@
-ARG MONERO_BRANCH=v0.17.3.0
+ARG MONERO_BRANCH=v0.17.3.2
 ARG UBUNTU_VERSION=20.04
 
 # Use Ubuntu for the build image base
